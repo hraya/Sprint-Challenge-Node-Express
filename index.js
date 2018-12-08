@@ -19,10 +19,6 @@ server.use(
 server.use('/api/projects', projectRouter);
 server.use('/api/actions', actionRouter);
 
-server.get('/', (req,res)=>{
-    res.status(200).json({message:"we are live"})
-})
-
 
 server.listen(PORT, ()=>{
     console.log(`Listening on port ${PORT}!`)
