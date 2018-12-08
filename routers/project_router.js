@@ -26,6 +26,20 @@ router.get('/:id', (req, res)=>{
     })
 })
 
+router.get('/:id/posts', (req, res)=>{
+    const { id } = req.params;
+    project.getProjectActions(id)
+    .then(projects=>{
+        if(projects.length > 0){
+            res.status(201).json(projects)
+        }else{
+            res.status(404).json({message:"the project with specified id does not exist"})
+        }
+    }).catch(err=>{
+        res.status(500).json({error:"Could not retrieve the posts!"})
+    })
+})
+
 router.post('/', (req, res)=>{
     const data = req.body;
     if(!data.name || !data.description){res.status(400).json({message:"Please provide name and description!"})}
